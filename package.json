@@ -1,7 +1,35 @@
 {
   "name": "aegiscore",
   "version": "1.0.0",
+  "description": "AegisCore - plataforma hibrida TypeScript + Rust para defesa web, criada pelo dev Llew.",
   "private": true,
+  "author": {
+    "name": "Dev Llew",
+    "url": "https://github.com/Lamarq7eYT"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Lamarq7eYT/AegisCore.git"
+  },
+  "homepage": "https://github.com/Lamarq7eYT/AegisCore#readme",
+  "bugs": {
+    "url": "https://github.com/Lamarq7eYT/AegisCore/issues"
+  },
+  "keywords": [
+    "aegiscore",
+    "web-security",
+    "appsec",
+    "typescript",
+    "rust",
+    "fastify",
+    "defensive-security",
+    "created-by-llew"
+  ],
+  "aegiscore": {
+    "createdBy": "Dev Llew",
+    "creatorGithub": "https://github.com/Lamarq7eYT",
+    "responsibleUse": "Defensive and educational security project."
+  },
   "packageManager": "pnpm@10.33.0",
   "engines": {
     "node": ">=24.0.0",
