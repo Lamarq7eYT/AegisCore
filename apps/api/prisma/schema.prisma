@@ -1,0 +1,128 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                    String               @id @default(cuid())
+  email                 String               @unique
+  displayName           String
+  passwordHash          String
+  roles                 String[]
+  permissions           String[]
+  status                String               @default("active")
+  failedLoginAttempts   Int                  @default(0)
+  lastLoginIpHash       String?
+  lastLoginUserAgentHash String?
+  createdAt             DateTime             @default(now())
+  updatedAt             DateTime             @updatedAt
+  mfaFactors            MfaFactor[]
+  passwordResets        PasswordResetToken[]
+  sessions              SessionAudit[]
+  uploads               UploadArtifact[]
+}
+
+model MfaFactor {
+  id         String   @id @default(cuid())
+  userId     String
+  type       String
+  secretHash String
+  label      String
+  enabled    Boolean  @default(false)
+  createdAt  DateTime @default(now())
+  lastUsedAt DateTime?
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model PasswordResetToken {
+  id        String   @id @default(cuid())
+  userId    String
+  tokenHash String   @unique
+  expiresAt DateTime
+  usedAt    DateTime?
+  createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model SessionAudit {
+  id            String   @id
+  userId        String
+  createdAt     DateTime
+  expiresAt     DateTime
+  lastSeenAt    DateTime
+  revokedAt     DateTime?
+  riskLevel     String
+  mfaVerified   Boolean
+  ipHash        String?
+  userAgentHash String?
+  rotatedFromId String?
+  user          User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model PolicyRule {
+  id         String   @id @default(cuid())
+  name       String
+  effect     String
+  resource   String
+  action     String
+  conditions Json
+  enabled    Boolean  @default(true)
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+model AuditEntry {
+  id            String   @id
+  actorId       String?
+  action        String
+  targetType    String
+  targetId      String?
+  decision      String
+  reason        String
+  correlationId String
+  metadata      Json
+  createdAt     DateTime
+}
+
+model SecurityEvent {
+  id            String   @id
+  kind          String
+  severity      String
+  correlationId String
+  route         String
+  actorId       String?
+  sessionId     String?
+  ipHash        String?
+  riskScore     Int
+  findings      Json
+  metadata      Json
+  createdAt     DateTime
+}
+
+model UploadArtifact {
+  id           String   @id @default(cuid())
+  ownerId      String?
+  originalName String
+  storedName   String
+  mimeType     String
+  extension    String
+  size         Int
+  status       String
+  sha256       String
+  flags        Json
+  createdAt    DateTime @default(now())
+  owner        User?    @relation(fields: [ownerId], references: [id], onDelete: SetNull)
+}
+
+model CooldownState {
+  id        String   @id @default(cuid())
+  key       String   @unique
+  dimension String
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+}
+

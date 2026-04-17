@@ -1,0 +1,51 @@
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_DB: aegis
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+
+  api:
+    build:
+      context: .
+      dockerfile: apps/api/Dockerfile
+    env_file:
+      - .env.example
+    environment:
+      NODE_ENV: production
+      STORAGE_DRIVER: prisma
+      SESSION_DRIVER: redis
+      ALLOW_NATIVE_FALLBACK: "false"
+      SECURE_COOKIES: "true"
+    ports:
+      - "3000:3000"
+    depends_on:
+      - postgres
+      - redis
+
+  admin:
+    build:
+      context: .
+      dockerfile: apps/admin-demo/Dockerfile
+    environment:
+      VITE_API_BASE: http://localhost:3000
+    ports:
+      - "3001:80"
+    depends_on:
+      - api
+
+volumes:
+  postgres_data:
+

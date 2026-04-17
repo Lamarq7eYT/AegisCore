@@ -1,0 +1,16 @@
+node_modules
+.pnpm-store
+dist
+coverage
+.turbo
+.vite
+.DS_Store
+*.log
+*.tsbuildinfo
+.env
+.env.*
+!.env.example
+apps/api/uploads
+apps/api/.tmp
+native/aegis-native/*.node
+target

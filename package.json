@@ -1,0 +1,38 @@
+{
+  "name": "aegiscore",
+  "version": "1.0.0",
+  "private": true,
+  "packageManager": "pnpm@10.33.0",
+  "engines": {
+    "node": ">=24.0.0",
+    "pnpm": ">=10.0.0"
+  },
+  "scripts": {
+    "build": "pnpm run build:ts && pnpm run native:build",
+    "build:ts": "pnpm run typecheck && pnpm --filter @aegis/api build && pnpm --filter @aegis/admin-demo build",
+    "dev:api": "pnpm --filter @aegis/api dev",
+    "dev:admin": "pnpm --filter @aegis/admin-demo dev",
+    "dev": "pnpm --parallel --filter @aegis/api --filter @aegis/admin-demo dev",
+    "typecheck": "tsc -b --pretty false",
+    "test": "pnpm run test:ts && pnpm run native:test:optional",
+    "test:ts": "vitest run",
+    "test:watch": "vitest",
+    "native:build": "pnpm --filter @aegis/native build",
+    "native:build:optional": "node ./scripts/native-build-optional.mjs",
+    "native:test": "cargo test --manifest-path native/Cargo.toml -p payload_normalizer -p request_inspector -p risk_scoring_core -p security_parser",
+    "native:test:optional": "node ./scripts/native-test-optional.mjs",
+    "prisma:generate": "cross-env DATABASE_URL=postgresql://postgres:postgres@localhost:5432/aegis pnpm --filter @aegis/api exec prisma generate --schema prisma/schema.prisma",
+    "audit:deps": "pnpm audit --prod",
+    "check:security": "pnpm run audit:deps && cargo audit --manifest-path native/Cargo.toml || exit 0",
+    "postinstall": "pnpm run prisma:generate && pnpm run native:build:optional"
+  },
+  "devDependencies": {
+    "@types/node": "^24.7.2",
+    "cross-env": "^10.0.0",
+    "tsup": "^8.3.5",
+    "tsx": "^4.19.3",
+    "typescript": "^5.9.3",
+    "vite": "^7.1.12",
+    "vitest": "^3.2.4"
+  }
+}

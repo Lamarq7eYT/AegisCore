@@ -1,0 +1,18 @@
+{
+  "name": "@aegis/native",
+  "version": "1.0.0",
+  "private": true,
+  "main": "binding.js",
+  "types": "types.d.ts",
+  "scripts": {
+    "build": "napi build --platform --release",
+    "build:debug": "napi build --platform",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "napi": {
+    "binaryName": "aegis_native"
+  },
+  "devDependencies": {
+    "@napi-rs/cli": "^3.0.1"
+  }
+}

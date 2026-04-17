@@ -1,0 +1,12 @@
+[package]
+name = "risk_scoring_core"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+payload_normalizer = { path = "../payload_normalizer" }
+request_inspector = { path = "../request_inspector" }
+serde.workspace = true
+serde_json.workspace = true
+

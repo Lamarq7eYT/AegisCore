@@ -1,0 +1,34 @@
+### Login
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+  "email": "admin@aegis.local",
+  "password": "Admin!234567"
+}
+
+### Current session
+GET http://localhost:3000/sessions/current
+Cookie: aegis_session=REPLACE_ME; aegis_csrf=REPLACE_ME
+
+### Risk summary
+GET http://localhost:3000/admin/risk/summary
+Cookie: aegis_session=REPLACE_ME; aegis_csrf=REPLACE_ME
+
+### Policy evaluation
+POST http://localhost:3000/admin/policies/evaluate
+Content-Type: application/json
+Cookie: aegis_session=REPLACE_ME; aegis_csrf=REPLACE_ME
+x-csrf-token: REPLACE_ME
+
+{
+  "resource": "admin",
+  "action": "write",
+  "requestAttributes": {
+    "reason": "demo-evaluation"
+  },
+  "resourceAttributes": {
+    "environment": "demo"
+  }
+}
+

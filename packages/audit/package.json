@@ -1,0 +1,17 @@
+{
+  "name": "@aegis/audit",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsup src/index.ts --format esm --dts",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "dependencies": {
+    "@aegis/contracts": "workspace:*",
+    "@aegis/observability": "workspace:*",
+    "pino": "^9.9.0"
+  }
+}

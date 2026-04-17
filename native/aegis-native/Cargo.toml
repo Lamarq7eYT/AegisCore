@@ -1,0 +1,22 @@
+[package]
+name = "aegis_native"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[lib]
+crate-type = ["cdylib"]
+
+[dependencies]
+napi.workspace = true
+napi-derive.workspace = true
+payload_normalizer = { path = "../crates/payload_normalizer" }
+request_inspector = { path = "../crates/request_inspector" }
+risk_scoring_core = { path = "../crates/risk_scoring_core" }
+security_parser = { path = "../crates/security_parser" }
+serde.workspace = true
+serde_json.workspace = true
+
+[build-dependencies]
+napi-build = "2.1"
+

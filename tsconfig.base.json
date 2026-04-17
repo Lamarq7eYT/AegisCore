@@ -1,0 +1,34 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "lib": ["ES2022", "DOM"],
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    "exactOptionalPropertyTypes": false,
+    "forceConsistentCasingInFileNames": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "useDefineForClassFields": true,
+    "types": ["node"],
+    "baseUrl": ".",
+    "paths": {
+      "@aegis/config": ["packages/config/src/index.ts"],
+      "@aegis/contracts": ["packages/contracts/src/index.ts"],
+      "@aegis/security-core-ts": ["packages/security-core-ts/src/index.ts"],
+      "@aegis/auth": ["packages/auth/src/index.ts"],
+      "@aegis/authorization": ["packages/authorization/src/index.ts"],
+      "@aegis/session": ["packages/session/src/index.ts"],
+      "@aegis/csrf": ["packages/csrf/src/index.ts"],
+      "@aegis/headers": ["packages/headers/src/index.ts"],
+      "@aegis/rate-limit": ["packages/rate-limit/src/index.ts"],
+      "@aegis/upload-guard": ["packages/upload-guard/src/index.ts"],
+      "@aegis/audit": ["packages/audit/src/index.ts"],
+      "@aegis/observability": ["packages/observability/src/index.ts"],
+      "@aegis/policy-engine": ["packages/policy-engine/src/index.ts"]
+    }
+  }
+}

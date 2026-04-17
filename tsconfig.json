@@ -1,0 +1,22 @@
+{
+  "extends": "./tsconfig.base.json",
+  "files": [],
+  "references": [
+    { "path": "./packages/config" },
+    { "path": "./packages/contracts" },
+    { "path": "./packages/security-core-ts" },
+    { "path": "./packages/auth" },
+    { "path": "./packages/authorization" },
+    { "path": "./packages/session" },
+    { "path": "./packages/csrf" },
+    { "path": "./packages/headers" },
+    { "path": "./packages/rate-limit" },
+    { "path": "./packages/upload-guard" },
+    { "path": "./packages/audit" },
+    { "path": "./packages/observability" },
+    { "path": "./packages/policy-engine" },
+    { "path": "./apps/api" },
+    { "path": "./apps/admin-demo" }
+  ]
+}
+

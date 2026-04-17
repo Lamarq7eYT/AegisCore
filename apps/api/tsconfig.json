@@ -1,0 +1,25 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "composite": true,
+    "outDir": "dist",
+    "rootDir": "src",
+    "jsx": "react-jsx"
+  },
+  "include": ["src/**/*.ts", "src/**/*.d.ts"],
+  "references": [
+    { "path": "../../packages/audit" },
+    { "path": "../../packages/auth" },
+    { "path": "../../packages/authorization" },
+    { "path": "../../packages/config" },
+    { "path": "../../packages/contracts" },
+    { "path": "../../packages/csrf" },
+    { "path": "../../packages/headers" },
+    { "path": "../../packages/observability" },
+    { "path": "../../packages/policy-engine" },
+    { "path": "../../packages/rate-limit" },
+    { "path": "../../packages/security-core-ts" },
+    { "path": "../../packages/session" },
+    { "path": "../../packages/upload-guard" }
+  ]
+}
