@@ -270,7 +270,3 @@ Ordem recomendada:
 - PostgreSQL e Redis com credenciais fortes.
 - Dependências auditadas.
 - Testes passando antes de release.
-
-## Licença
-
-Este repositório ainda não define uma licença explícita. Antes de publicar ou reutilizar em terceiros, escolha uma licença compatível com o objetivo do projeto.
